@@ -84,7 +84,7 @@ left join hr_payslip as p on pl.slip_id = p.id
 left join hr_employee as emp on emp.id = p.employee_id
 left join resource_resource as r on r.id = emp.resource_id
 where p.state = 'done' and (pl.code like %s) and (to_char(p.date_to,'mm')=%s)
-and (to_char(date_to,'yyyy')=%s)
+and (to_char(p.date_to,'yyyy')=%s)
 group by r.name, p.date_to''', (cod_id, mes, ano,))
 
         max = self.cr.fetchone()
