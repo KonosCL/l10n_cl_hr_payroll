@@ -3,14 +3,15 @@
 # 	* hr
 # 	* hr_holidays
 # 	* l10n_cl_hr_payroll
+# 	* hr_contract
 # 	* hr_payroll
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c-20170207\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-13 20:46+0000\n"
-"PO-Revision-Date: 2017-07-13 17:00-0400\n"
+"POT-Creation-Date: 2017-07-13 21:06+0000\n"
+"PO-Revision-Date: 2017-07-13 17:11-0400\n"
 "Last-Translator: Nelson Ramírez <info@konos.cl>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -372,13 +373,19 @@ msgstr "Contabilidad"
 msgid "Accounting Information"
 msgstr "Información contable"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_department_message_needaction
 #: model:ir.model.fields,field_description:hr.field_hr_employee_message_needaction
 #: model:ir.model.fields,field_description:hr.field_hr_job_message_needaction
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_message_needaction
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_message_needaction
 msgid "Action Needed"
 msgstr "Acción necesaria"
+
+#. module: hr_contract
+#: model:ir.model,name:hr_contract.model_base_action_rule
+msgid "Action Rules"
+msgstr "Reglas acción"
 
 #. modules: hr, hr_holidays, hr_payroll
 #: model:ir.model.fields,field_description:hr.field_hr_employee_active
@@ -407,6 +414,16 @@ msgstr "Añadir una razón..."
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_form
 msgid "Add an internal note..."
 msgstr "Añadir una nota interna..."
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_advantages
+msgid "Advantages"
+msgstr "Complementos"
+
+#. module: hr_contract
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_form
+msgid "Advantages..."
+msgstr "Complementos..."
 
 #. module: l10n_cl_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cl_hr_payroll.hr_indicadores_previsionales_view
@@ -672,6 +689,11 @@ msgstr "Asignar ausencias"
 #: model:ir.model.fields,field_description:hr.field_hr_employee_bank_account_id
 msgid "Bank Account Number"
 msgstr "Número de Cuenta Bancaria"
+
+#. module: hr_contract
+#: model:ir.model.fields,help:hr_contract.field_hr_contract_wage
+msgid "Basic Salary of the employee"
+msgstr "Salario base del empleado"
 
 #. module: hr_payroll
 #: selection:hr.contract,schedule_pay:0
@@ -1002,6 +1024,11 @@ msgstr "Compañía"
 msgid "Company Contribution"
 msgstr "Contribución compañía"
 
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_employee_vehicle
+msgid "Company Vehicle"
+msgstr "Vehículo de la compañía"
+
 #. module: hr_holidays
 #: model:hr.holidays.status,name:hr_holidays.holiday_status_comp
 msgid "Compensatory Days"
@@ -1059,7 +1086,8 @@ msgstr "Confirmado"
 msgid "Contact Information"
 msgstr "Información de contacto"
 
-#. modules: l10n_cl_hr_payroll, hr_payroll
+#. modules: l10n_cl_hr_payroll, hr_contract, hr_payroll
+#: model:ir.model,name:hr_contract.model_hr_contract
 #: model:ir.model,name:hr_payroll.model_hr_contract
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_contract_id
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_input_contract_id
@@ -1069,10 +1097,57 @@ msgstr "Información de contacto"
 msgid "Contract"
 msgstr "Contrato"
 
-#. module: l10n_cl_hr_payroll
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_name
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_form
+msgid "Contract Reference"
+msgstr "Referencia contrato"
+
+#. modules: l10n_cl_hr_payroll, hr_contract
+#: model:ir.model,name:hr_contract.model_hr_contract_type
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_type_id_2341
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_type_name
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_type_view_form
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_type_view_search
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_type_view_tree
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_search
 #: model:ir.model,name:l10n_cl_hr_payroll.model_hr_contract_type
 msgid "Contract Type"
 msgstr "Tipo de contrato"
+
+#. module: hr_contract
+#: model:ir.actions.act_window,name:hr_contract.action_hr_contract_type
+#: model:ir.ui.menu,name:hr_contract.hr_menu_contract_type
+msgid "Contract Types"
+msgstr "Tipos de contrato"
+
+#. module: hr_contract
+#: model:mail.message.subtype,description:hr_contract.mt_contract_pending
+#: model:mail.message.subtype,description:hr_contract.mt_department_contract_pending
+msgid "Contract about to expire"
+msgstr "Contrato a punto de caducar"
+
+#. module: hr_contract
+#: model:mail.message.subtype,description:hr_contract.mt_contract_close
+msgid "Contract expired"
+msgstr "Contrato expirado"
+
+#. module: hr_contract
+#: model:mail.message.subtype,name:hr_contract.mt_department_contract_pending
+msgid "Contract to Renew"
+msgstr "Contrato a renovar"
+
+#. module: hr_contract
+#: model:ir.actions.act_window,name:hr_contract.act_hr_employee_2_hr_contract
+#: model:ir.actions.act_window,name:hr_contract.action_hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_employee_contract_ids
+#: model:ir.model.fields,field_description:hr_contract.field_hr_employee_contracts_count
+#: model:ir.ui.menu,name:hr_contract.hr_menu_contract
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_search
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_tree
+#: model:ir.ui.view,arch_db:hr_contract.hr_hr_employee_view_form2
+msgid "Contracts"
+msgstr "Contratos"
 
 #. module: l10n_cl_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cl_hr_payroll.hr_contract_chile_view
@@ -1178,11 +1253,13 @@ msgstr "Cree sus departamentos"
 msgid "Create journal entries from payslips"
 msgstr "Crear apuntes contables de las nóminas"
 
-#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_payroll
+#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_contract, hr_payroll
 #: model:ir.model.fields,field_description:hr.field_hr_department_create_uid
 #: model:ir.model.fields,field_description:hr.field_hr_employee_category_create_uid
 #: model:ir.model.fields,field_description:hr.field_hr_employee_create_uid
 #: model:ir.model.fields,field_description:hr.field_hr_job_create_uid
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_create_uid
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_type_create_uid
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_create_uid
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_status_create_uid
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_summary_dept_create_uid
@@ -1211,11 +1288,13 @@ msgstr "Crear apuntes contables de las nóminas"
 msgid "Created by"
 msgstr "Creado por"
 
-#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_payroll
+#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_contract, hr_payroll
 #: model:ir.model.fields,field_description:hr.field_hr_department_create_date
 #: model:ir.model.fields,field_description:hr.field_hr_employee_category_create_date
 #: model:ir.model.fields,field_description:hr.field_hr_employee_create_date
 #: model:ir.model.fields,field_description:hr.field_hr_job_create_date
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_create_date
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_type_create_date
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_create_date
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_status_create_date
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_summary_dept_create_date
@@ -1259,6 +1338,18 @@ msgstr "Cuprum"
 #: model:ir.ui.view,arch_db:hr_holidays.view_hr_holidays_filter
 msgid "Current"
 msgstr "Current"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_employee_contract_id
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_form
+#: model:ir.ui.view,arch_db:hr_contract.hr_hr_employee_view_form2
+msgid "Current Contract"
+msgstr "Contrato Actual"
+
+#. module: hr_contract
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_search
+msgid "Current Employee"
+msgstr "Empleado Actual"
 
 #. module: hr_holidays
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_employee_current_leave_state
@@ -1314,10 +1405,11 @@ msgstr "Fecha hasta"
 msgid "Date of Birth"
 msgstr "Fecha de nacimiento"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,help:hr.field_hr_department_message_last_post
 #: model:ir.model.fields,help:hr.field_hr_employee_message_last_post
 #: model:ir.model.fields,help:hr.field_hr_job_message_last_post
+#: model:ir.model.fields,help:hr_contract.field_hr_contract_message_last_post
 #: model:ir.model.fields,help:hr_holidays.field_hr_holidays_message_last_post
 msgid "Date of the last message posted on the record."
 msgstr "Fecha del último mensaje publicado en el registro."
@@ -1332,12 +1424,13 @@ msgstr "Define el horario del recurso."
 msgid "Defines the rules that have to be applied to this payslip, accordingly to the contract chosen. If you let empty the field contract, this field isn't mandatory anymore and thus the rules applied will be all the rules set on the structure of all contracts of the employee valid for the chosen period"
 msgstr "Define las reglas que serán aplicadas a esta nómina, de acuerdo con el contrato escogido. Si deja vacío el campo contrato, este campo no será obligatorio y por tanto se aplicarán las reglas válidas establecidas en todos los contratos de empleado para el periodo elegido."
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_employee_department_id
 #: model:ir.model.fields,field_description:hr.field_hr_job_department_id
 #: model:ir.ui.view,arch_db:hr.view_department_filter
 #: model:ir.ui.view,arch_db:hr.view_employee_filter
 #: model:ir.ui.view,arch_db:hr.view_job_filter
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_department_id
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_department_id
 msgid "Department"
 msgstr "Departamento"
@@ -1417,11 +1510,13 @@ msgstr "Detalles por categoría de regla salarial"
 msgid "Details by Salary Rule Category"
 msgstr "Detalles por categoría de regla salarial"
 
-#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_payroll
+#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_contract, hr_payroll
 #: model:ir.model.fields,field_description:hr.field_hr_department_display_name
 #: model:ir.model.fields,field_description:hr.field_hr_employee_category_display_name
 #: model:ir.model.fields,field_description:hr.field_hr_employee_display_name
 #: model:ir.model.fields,field_description:hr.field_hr_job_display_name
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_display_name
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_type_display_name
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_display_name
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_remaining_leaves_user_display_name
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_status_display_name
@@ -1495,7 +1590,8 @@ msgstr "Procesamientos de nóminas borrador"
 msgid "Draft Slip"
 msgstr "Nómina borrador"
 
-#. module: hr_holidays
+#. modules: hr_holidays, hr_contract
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_form
 #: model:ir.ui.view,arch_db:hr_holidays.edit_holiday_new
 msgid "Duration"
 msgstr "Duración"
@@ -1505,9 +1601,12 @@ msgstr "Duración"
 msgid "Efficiency Factor"
 msgstr "Factor de eficiciencia"
 
-#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_payroll
+#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_contract, hr_payroll
 #: model:ir.model,name:hr.model_hr_employee
 #: model:ir.ui.view,arch_db:hr.view_employee_form
+#: model:ir.model,name:hr_contract.model_hr_employee
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_employee_id
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_search
 #: model:ir.model,name:hr_holidays.model_hr_employee
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_employee_id
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_remaining_leaves_user_name
@@ -1600,7 +1699,8 @@ msgstr "Estructura de empleados"
 msgid "Employees Tags"
 msgstr "Etiquetas de empleados"
 
-#. modules: hr_holidays, l10n_cl_hr_payroll
+#. modules: hr_holidays, l10n_cl_hr_payroll, hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_date_end
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_date_to
 #: model:ir.model.fields,field_description:l10n_cl_hr_payroll.field_hr_salary_employee_month_end_date
 msgid "End Date"
@@ -1610,6 +1710,11 @@ msgstr "Fecha final"
 #: constraint:hr.payroll.structure:0
 msgid "Error ! You cannot create a recursive Salary Structure."
 msgstr "¡Error! No puede crear una estructura salarial recursiva."
+
+#. module: hr_contract
+#: constraint:hr.contract:0
+msgid "Error! Contract start-date must be less than contract end-date."
+msgstr "¡Error! La fecha de inicio del contrato debe ser anterior a la de fin."
 
 #. module: hr
 #: constraint:hr.department:0
@@ -1641,6 +1746,12 @@ msgstr "Nuevos empleados esperados"
 #: model:ir.model.fields,help:hr.field_hr_job_expected_employees
 msgid "Expected number of employees for this job position after new recruitment."
 msgstr "Número previsto de empleados para este puesto tras las nuevas contrataciones."
+
+#. module: hr_contract
+#: selection:hr.contract,state:0
+#: model:mail.message.subtype,name:hr_contract.mt_contract_close
+msgid "Expired"
+msgstr "Expirado"
 
 #. module: l10n_cl_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cl_hr_payroll.hr_afp_form
@@ -1720,27 +1831,30 @@ msgstr "Importe fijo"
 msgid "Follow"
 msgstr "Seguir"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_department_message_follower_ids
 #: model:ir.model.fields,field_description:hr.field_hr_employee_message_follower_ids
 #: model:ir.model.fields,field_description:hr.field_hr_job_message_follower_ids
 #: model:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_message_follower_ids
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_department_message_channel_ids
 #: model:ir.model.fields,field_description:hr.field_hr_employee_message_channel_ids
 #: model:ir.model.fields,field_description:hr.field_hr_job_message_channel_ids
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_message_channel_ids
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_message_channel_ids
 msgid "Followers (Channels)"
 msgstr "Seguidores (Canales)"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_department_message_partner_ids
 #: model:ir.model.fields,field_description:hr.field_hr_employee_message_partner_ids
 #: model:ir.model.fields,field_description:hr.field_hr_job_message_partner_ids
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_message_partner_ids
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Empresas)"
@@ -1853,6 +1967,11 @@ msgstr "Generar las nóminas para todos los empleados seleccionados"
 msgid "Get all applications related to this job position."
 msgstr "Conseguir todas las aplicaciones relacionadas con este puesto de trabajo."
 
+#. module: hr_contract
+#: model:ir.model.fields,help:hr_contract.field_hr_contract_type_sequence
+msgid "Gives the sequence when displaying a list of Contract."
+msgstr "Da la secuencia cuando se muestra una lista de Contrato."
+
 #. module: l10n_cl_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cl_hr_payroll.report_hrsalarybymonth
 msgid "Grat. Legal"
@@ -1869,9 +1988,10 @@ msgstr "Gratificación Legal Anual"
 msgid "Green this button when the leave has been taken into account in the payslip."
 msgstr "Seleccione esta casilla cuando la ausencia haya sido tenida en cuenta en la nómina."
 
-#. modules: hr, hr_holidays, hr_payroll
+#. modules: hr, hr_holidays, hr_contract, hr_payroll
 #: model:ir.ui.view,arch_db:hr.view_employee_filter
 #: model:ir.ui.view,arch_db:hr.view_job_filter
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_search
 #: model:ir.ui.view,arch_db:hr_holidays.view_hr_holidays_filter
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_filter
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_line_filter
@@ -1888,6 +2008,16 @@ msgstr "H. Extra"
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_report_note
 msgid "HR Comments"
 msgstr "Comentarios de RRHH"
+
+#. module: hr_contract
+#: model:ir.actions.server,name:hr_contract.contract_set_as_close
+msgid "HR Contract: set as close"
+msgstr "Contrato HR: establecer como cerrado"
+
+#. module: hr_contract
+#: model:ir.actions.server,name:hr_contract.contract_set_as_pending
+msgid "HR Contract: set as pending"
+msgstr "Contrato HR: establecer como pendiente"
 
 #. modules: hr, hr_holidays
 #: model:ir.model,name:hr.model_hr_department
@@ -1930,16 +2060,23 @@ msgstr "Empleados contratados"
 msgid "Home Address"
 msgstr "Dirección particular"
 
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_employee_vehicle_distance
+msgid "Home-Work Dist."
+msgstr "Distancia casa-trabajo"
+
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_hr_main
 msgid "Human Resources"
 msgstr "Recursos humanos"
 
-#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_payroll
+#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_contract, hr_payroll
 #: model:ir.model.fields,field_description:hr.field_hr_department_id
 #: model:ir.model.fields,field_description:hr.field_hr_employee_category_id
 #: model:ir.model.fields,field_description:hr.field_hr_employee_id
 #: model:ir.model.fields,field_description:hr.field_hr_job_id
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_id
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_type_id
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_id
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_remaining_leaves_user_id
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_status_id
@@ -1984,18 +2121,20 @@ msgstr "ISAPRE"
 msgid "Identification No"
 msgstr "Nº identificación"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,help:hr.field_hr_department_message_unread
 #: model:ir.model.fields,help:hr.field_hr_employee_message_unread
 #: model:ir.model.fields,help:hr.field_hr_job_message_unread
+#: model:ir.model.fields,help:hr_contract.field_hr_contract_message_unread
 #: model:ir.model.fields,help:hr_holidays.field_hr_holidays_message_unread
 msgid "If checked new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,help:hr.field_hr_department_message_needaction
 #: model:ir.model.fields,help:hr.field_hr_employee_message_needaction
 #: model:ir.model.fields,help:hr.field_hr_job_message_needaction
+#: model:ir.model.fields,help:hr_contract.field_hr_contract_message_needaction
 #: model:ir.model.fields,help:hr_holidays.field_hr_holidays_message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
@@ -2041,6 +2180,11 @@ msgstr "Ocupado"
 msgid "In Recruitment"
 msgstr "En selección"
 
+#. module: hr_contract
+#: model:ir.model.fields,help:hr_contract.field_hr_employee_vehicle_distance
+msgid "In kilometers"
+msgstr "En kilómetros."
+
 #. module: l10n_cl_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cl_hr_payroll.field_hr_afp_independiente
 msgid "Independientes"
@@ -2070,6 +2214,11 @@ msgstr "Indicar N° Contrato de Salud a Isapre"
 msgid "Indicates this payslip has a refund of another"
 msgstr "Indica que esta nómina incluye una factura rectificativa de otra"
 
+#. module: hr_contract
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_form
+msgid "Information"
+msgstr "Información"
+
 #. module: hr_payroll
 #: model:ir.ui.view,arch_db:hr_payroll.hr_salary_rule_form
 #: model:ir.ui.view,arch_db:hr_payroll.view_hr_payslip_form
@@ -2098,13 +2247,19 @@ msgstr "Instituciones Relacionadas"
 msgid "Internal Note"
 msgstr "Nota interna"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_department_message_is_follower
 #: model:ir.model.fields,field_description:hr.field_hr_employee_message_is_follower
 #: model:ir.model.fields,field_description:hr.field_hr_job_message_is_follower
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_message_is_follower
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_message_is_follower
 msgid "Is Follower"
 msgstr "Es un seguidor"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_employee_manager
+msgid "Is a Manager"
+msgstr "Es un director"
 
 #. module: l10n_cl_hr_payroll
 #: model:ir.actions.act_window,name:l10n_cl_hr_payroll.hr_isapre_action
@@ -2128,11 +2283,12 @@ msgstr "Se usa en el cálculo. Por ejemplo, una regla para ventas con un 1% de c
 msgid "Ivory"
 msgstr "Marfil"
 
-#. module: hr
+#. modules: hr, hr_contract
 #: model:ir.ui.view,arch_db:hr.view_employee_filter
 #: model:ir.ui.view,arch_db:hr.view_hr_job_form
 #: model:ir.ui.view,arch_db:hr.view_hr_job_tree
 #: model:ir.ui.view,arch_db:hr.view_job_filter
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_search
 msgid "Job"
 msgstr "Trabajo"
 
@@ -2173,10 +2329,11 @@ msgstr ""
 "Puede realizar un seguimiento del número de empleados que tiene por\n"
 "puesto de trabajo y puede seguir la evolución de acuerdo a sus previsiones."
 
-#. module: hr
+#. modules: hr, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_employee_job_id
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_job_id
 msgid "Job Title"
-msgstr "Título del trabajo"
+msgstr "Cargo"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_department_jobs_ids
@@ -2189,19 +2346,22 @@ msgstr "Trabajos"
 msgid "LIQUIDACION DE SUELDO"
 msgstr "LIQUIDACION DE SUELDO"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_department_message_last_post
 #: model:ir.model.fields,field_description:hr.field_hr_employee_message_last_post
 #: model:ir.model.fields,field_description:hr.field_hr_job_message_last_post
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_message_last_post
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_message_last_post
 msgid "Last Message Date"
 msgstr "Fecha del último mensaje"
 
-#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_payroll
+#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_contract, hr_payroll
 #: model:ir.model.fields,field_description:hr.field_hr_department___last_update
 #: model:ir.model.fields,field_description:hr.field_hr_employee___last_update
 #: model:ir.model.fields,field_description:hr.field_hr_employee_category___last_update
 #: model:ir.model.fields,field_description:hr.field_hr_job___last_update
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract___last_update
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_type___last_update
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays___last_update
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_remaining_leaves_user___last_update
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_status___last_update
@@ -2242,11 +2402,13 @@ msgstr "Última modificación en"
 msgid "Last Name"
 msgstr "Apellido"
 
-#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_payroll
+#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_contract, hr_payroll
 #: model:ir.model.fields,field_description:hr.field_hr_department_write_uid
 #: model:ir.model.fields,field_description:hr.field_hr_employee_category_write_uid
 #: model:ir.model.fields,field_description:hr.field_hr_employee_write_uid
 #: model:ir.model.fields,field_description:hr.field_hr_job_write_uid
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_type_write_uid
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_write_uid
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_status_write_uid
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_summary_dept_write_uid
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_summary_employee_write_uid
@@ -2275,10 +2437,12 @@ msgstr "Apellido"
 msgid "Last Updated by"
 msgstr "Última actualización de"
 
-#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_payroll
+#. modules: hr, hr_holidays, l10n_cl_hr_payroll, hr_contract, hr_payroll
 #: model:ir.model.fields,field_description:hr.field_hr_department_write_date
 #: model:ir.model.fields,field_description:hr.field_hr_employee_category_write_date
 #: model:ir.model.fields,field_description:hr.field_hr_employee_write_date
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_type_write_date
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_write_date
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_status_write_date
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_summary_dept_write_date
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_summary_employee_write_date
@@ -2322,6 +2486,11 @@ msgstr "Last name of employee couple"
 #: model:ir.model.fields,field_description:hr.field_hr_employee_last_login
 msgid "Latest Connection"
 msgstr "Última conexión"
+
+#. module: hr_contract
+#: model:ir.model.fields,help:hr_contract.field_hr_employee_contract_id
+msgid "Latest contract of the employee"
+msgstr "Último contrato del empleado."
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_hr_job_form
@@ -2642,6 +2811,16 @@ msgstr "Máximo de ausencias permitidas - Ausencias ya tomadas - Ausencias sin a
 msgid "Maximum Range"
 msgstr "Intervalo máximo"
 
+#. module: hr_contract
+#: model:ir.ui.view,arch_db:hr_contract.hr_hr_employee_view_form2
+msgid "Medical Exam"
+msgstr "Examen médico"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_employee_medic_exam
+msgid "Medical Examination Date"
+msgstr "Fecha del examen médico"
+
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_image_medium
 msgid "Medium-sized photo"
@@ -2672,11 +2851,12 @@ msgstr "Miembros"
 msgid "Menores de 18 y Mayores de 65:"
 msgstr "Menores de 18 y Mayores de 65:"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_department_message_ids
 #: model:ir.model.fields,field_description:hr.field_hr_employee_message_ids
 #: model:ir.model.fields,field_description:hr.field_hr_job_message_ids
 #: model:ir.ui.view,arch_db:hr.hr_kanban_view_employees
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_message_ids
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_message_ids
 msgid "Messages"
 msgstr "Mensajes"
@@ -2812,8 +2992,8 @@ msgstr "Nombre"
 msgid "Nationality (Country)"
 msgstr "Nacionalidad (País)"
 
-#. module: hr_holidays
-#: selection:hr.employee,current_leave_state:0
+#. modules: hr_holidays, hr_contract
+#: selection:hr.contract,state:0 selection:hr.employee,current_leave_state:0
 msgid "New"
 msgstr "Nuevo"
 
@@ -2845,19 +3025,27 @@ msgstr "Días de trabajo normales pagados al 100%"
 msgid "Note"
 msgstr "Nota"
 
-#. modules: hr, hr_payroll
+#. modules: hr, hr_contract, hr_payroll
 #: model:ir.model.fields,field_description:hr.field_hr_employee_notes
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_notes
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_form
 #: model:ir.ui.view,arch_db:hr_payroll.hr_salary_rule_category_form
 msgid "Notes"
 msgstr "Notas"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_department_message_needaction_counter
 #: model:ir.model.fields,field_description:hr.field_hr_employee_message_needaction_counter
 #: model:ir.model.fields,field_description:hr.field_hr_job_message_needaction_counter
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_message_needaction_counter
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_message_needaction_counter
 msgid "Number of Actions"
 msgstr "Número de acciones"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_employee_children
+msgid "Number of Children"
+msgstr "Número de hijos"
 
 #. modules: hr_holidays, hr_payroll
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_number_of_days
@@ -2888,10 +3076,11 @@ msgstr "Número de empleados que actualmente ocupan este puesto."
 msgid "Number of hired employees for this job position during recruitment phase."
 msgstr "Número de empleados contratados para este puesto de trabajo durante la fase de contratación"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,help:hr.field_hr_department_message_needaction_counter
 #: model:ir.model.fields,help:hr.field_hr_employee_message_needaction_counter
 #: model:ir.model.fields,help:hr.field_hr_job_message_needaction_counter
+#: model:ir.model.fields,help:hr_contract.field_hr_contract_message_needaction_counter
 #: model:ir.model.fields,help:hr_holidays.field_hr_holidays_message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr "Número de mensajes que requieren una acción"
@@ -2901,10 +3090,11 @@ msgstr "Número de mensajes que requieren una acción"
 msgid "Number of new employees you expect to recruit."
 msgstr "Número de empleados que espera contratar."
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,help:hr.field_hr_department_message_unread_counter
 #: model:ir.model.fields,help:hr.field_hr_employee_message_unread_counter
 #: model:ir.model.fields,help:hr.field_hr_job_message_unread_counter
+#: model:ir.model.fields,help:hr_contract.field_hr_contract_message_unread_counter
 #: model:ir.model.fields,help:hr_holidays.field_hr_holidays_message_unread_counter
 msgid "Number of unread messages"
 msgstr "Número de mensajes no leidos"
@@ -2943,6 +3133,11 @@ msgstr ""
 "fijar el tipo de ausencia adecuado (compensación, vacaciones\n"
 "enfermedad) y el número de días libres exacto en relación\n"
 "a su ausencia."
+
+#. module: hr_contract
+#: model:ir.filters,name:hr_contract.contract_open
+msgid "Open Contracts"
+msgstr "Contratos Abiertos"
 
 #. modules: hr, hr_holidays
 #: model:ir.actions.client,name:hr.action_client_hr_menu
@@ -3237,6 +3432,11 @@ msgstr "Pesos"
 #: model:ir.model.fields,field_description:hr.field_hr_employee_image
 msgid "Photo"
 msgstr "Foto"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_employee_place_of_birth
+msgid "Place of Birth"
+msgstr "Lugar de nacimiento"
 
 #. module: l10n_cl_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cl_hr_payroll.field_hr_indicadores_tasa_afp_planvital
@@ -3546,6 +3746,11 @@ msgstr "Tipo de Recurso"
 msgid "Rule"
 msgstr "Regla"
 
+#. module: hr_contract
+#: selection:hr.contract,state:0
+msgid "Running"
+msgstr "En proceso"
+
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_sinid
 msgid "SIN No"
@@ -3655,6 +3860,11 @@ msgstr "Estructuras salariales"
 msgid "Salary Structures Hierarchy"
 msgstr "Jerarquía de estructuras salariales"
 
+#. module: hr_contract
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_form
+msgid "Salary and Advantages"
+msgstr "Salario y complementos"
+
 #. module: l10n_cl_hr_payroll
 #: model:ir.ui.view,arch_db:l10n_cl_hr_payroll.hr_contract_chile_view
 #: model:ir.ui.view,arch_db:l10n_cl_hr_payroll.report_hrsalarybymonth
@@ -3665,6 +3875,16 @@ msgstr "Salud"
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_contract_schedule_pay
 msgid "Scheduled Pay"
 msgstr "Pago planificado"
+
+#. module: hr_contract
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_search
+msgid "Search Contract"
+msgstr "Buscar contrato"
+
+#. module: hr_contract
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_type_view_search
+msgid "Search Contract Type"
+msgstr "Buscar tipo contrato"
 
 #. module: hr_holidays
 #: model:ir.ui.view,arch_db:hr_holidays.view_hr_holidays_filter
@@ -3758,7 +3978,9 @@ msgstr "Seleccione tipo de ausencia"
 msgid "Semi-annually"
 msgstr "Semestralmente"
 
-#. module: hr_payroll
+#. modules: hr_contract, hr_payroll
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_type_sequence
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_type_view_search
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_input_sequence
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_line_sequence
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_worked_days_sequence
@@ -3814,7 +4036,8 @@ msgstr "Nº de seguridad social"
 msgid "Social Security Number"
 msgstr "Nº seguridad social"
 
-#. module: hr_holidays
+#. modules: hr_holidays, hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_date_start
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_date_from
 msgid "Start Date"
 msgstr "Fecha inicial"
@@ -3829,15 +4052,21 @@ msgstr "Mes de inicio"
 msgid "States"
 msgstr "Estado"
 
-#. modules: hr, hr_holidays, hr_payroll
+#. modules: hr, hr_holidays, hr_contract, hr_payroll
 #: model:ir.model.fields,field_description:hr.field_hr_job_state
 #: model:ir.ui.view,arch_db:hr.view_employee_form
 #: model:ir.ui.view,arch_db:hr.view_job_filter
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_state
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_state
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_run_state
 #: model:ir.model.fields,field_description:hr_payroll.field_hr_payslip_state
 msgid "Status"
 msgstr "Estado"
+
+#. module: hr_contract
+#: model:ir.model.fields,help:hr_contract.field_hr_contract_state
+msgid "Status of the contract"
+msgstr "Estado del contrato"
 
 #. module: hr
 #: model:ir.ui.view,arch_db:hr.view_hr_job_form
@@ -4159,6 +4388,13 @@ msgstr "Hasta la Fecha"
 msgid "To Do"
 msgstr "Para ejecutar"
 
+#. module: hr_contract
+#: selection:hr.contract,state:0
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_search
+#: model:mail.message.subtype,name:hr_contract.mt_contract_pending
+msgid "To Renew"
+msgstr "Para renovar"
+
 #. module: hr_holidays
 #: model:ir.ui.view,arch_db:hr_holidays.view_hr_holidays_filter
 msgid "To Report in Payslip"
@@ -4284,6 +4520,21 @@ msgstr "Tramo B"
 msgid "Tramo C"
 msgstr "Tramo C"
 
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_trial_date_end
+msgid "Trial End Date"
+msgstr "Fecha de finalización"
+
+#. module: hr_contract
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_form
+msgid "Trial Period Duration"
+msgstr "Duración del periodo de prueba"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_trial_date_start
+msgid "Trial Start Date"
+msgstr "Fecha de inicio"
+
 #. module: hr_holidays
 #: model:ir.ui.view,arch_db:hr_holidays.view_hr_holidays_filter
 msgid "Type"
@@ -4342,7 +4593,7 @@ msgstr "UTM Fin de Mes"
 msgid "Unpaid"
 msgstr "Impagada"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_department_message_unread
 #: model:ir.model.fields,field_description:hr.field_hr_employee_message_unread
 #: model:ir.model.fields,field_description:hr.field_hr_job_message_unread
@@ -4350,15 +4601,18 @@ msgstr "Impagada"
 #: model:ir.ui.view,arch_db:hr.view_department_filter
 #: model:ir.ui.view,arch_db:hr.view_employee_filter
 #: model:ir.ui.view,arch_db:hr.view_job_filter
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_message_unread
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_search
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_message_unread
 #: model:ir.ui.view,arch_db:hr_holidays.view_hr_holidays_filter
 msgid "Unread Messages"
 msgstr "Mensajes sin leer"
 
-#. modules: hr, hr_holidays
+#. modules: hr, hr_holidays, hr_contract
 #: model:ir.model.fields,field_description:hr.field_hr_department_message_unread_counter
 #: model:ir.model.fields,field_description:hr.field_hr_employee_message_unread_counter
 #: model:ir.model.fields,field_description:hr.field_hr_job_message_unread_counter
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_message_unread_counter
 #: model:ir.model.fields,field_description:hr_holidays.field_hr_holidays_message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "Contador de mensajes no leídos"
@@ -4367,6 +4621,16 @@ msgstr "Contador de mensajes no leídos"
 #: model:ir.model.fields,field_description:hr.field_hr_job_write_date
 msgid "Update Date"
 msgstr "Fecha de actualización"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_base_action_rule_trg_date_resource_field_id
+msgid "Use employee work schedule"
+msgstr "Usar el calendario de trabajo del empleado"
+
+#. module: hr_contract
+#: model:ir.model.fields,help:hr_contract.field_base_action_rule_trg_date_resource_field_id
+msgid "Use the user's working schedule."
+msgstr "Usar el calendario de trabajo del usuario"
 
 #. module: hr_payroll
 #: model:ir.model.fields,help:hr_payroll.field_hr_payslip_line_sequence
@@ -4412,11 +4676,26 @@ msgstr "Violeta"
 msgid "Virtual Remaining Leaves"
 msgstr "Ausencias restantes virtuales"
 
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_visa_expire
+msgid "Visa Expire Date"
+msgstr "Fecha expiración visado"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_visa_no
+msgid "Visa No"
+msgstr "Número de Visado"
+
 #. module: l10n_cl_hr_payroll
 #: model:ir.model.fields,field_description:l10n_cl_hr_payroll.field_hr_contract_viatico_santiago
 #: model:ir.model.fields,help:l10n_cl_hr_payroll.field_hr_contract_viatico_santiago
 msgid "Viático Santiago"
 msgstr "Viático Santiago"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_wage
+msgid "Wage"
+msgstr "Sueldo Base"
 
 #. module: hr_payroll
 #: selection:hr.payslip,state:0
@@ -4486,6 +4765,16 @@ msgstr "Ubicación de trabajo"
 msgid "Work Mobile"
 msgstr "Móvil del trabajo"
 
+#. module: hr_contract
+#: model:ir.ui.view,arch_db:hr_contract.hr_contract_view_form
+msgid "Work Permit"
+msgstr "Permiso de trabajo"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_permit_no
+msgid "Work Permit No"
+msgstr "Número de permiso de trabajo"
+
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_work_phone
 msgid "Work Phone"
@@ -4510,6 +4799,11 @@ msgstr "Días trabajados y entradas"
 #: model:ir.model.fields,field_description:hr.field_hr_employee_address_id
 msgid "Working Address"
 msgstr "Dirección de trabajo"
+
+#. module: hr_contract
+#: model:ir.model.fields,field_description:hr_contract.field_hr_contract_working_hours
+msgid "Working Schedule"
+msgstr "Planificación de trabajo"
 
 #. module: hr
 #: model:ir.model.fields,field_description:hr.field_hr_employee_calendar_id
